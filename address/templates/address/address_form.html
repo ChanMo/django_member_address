@@ -1,0 +1,55 @@
+{% extends "address/base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+<link rel="stylesheet" href="https://raw.githubusercontent.com/ChanMo/input_address/master/dist/input_address.css">
+{% endblock %}
+
+{% block main %}
+<div class="small-12 columns">
+  <form method="POST">
+    {% csrf_token %}
+    <div class="row">
+      <div class="small-12 columns">
+        <label>姓名
+          <input type="text" name="name" value="{{ form.name.value }}">
+        </label>
+      </div>
+      <div class="small-12 columns">
+        <label>手机
+          <input type="tel" name="mobile" value="{{ form.mobile.value }}" required>
+        </label>
+      </div>
+      <div class="small-12 columns">
+        <label>地址
+          <input type="text" name="location" id="form_name" value="{{ form.location.value }}" onclick="init_address()" readonly="true">
+        </label>
+      </div>
+      <div class="small-12 columns">
+        <label>详细地址
+          <textarea name="address" id="form_address" rows="4">{{ form.address.value }}</textarea>
+        </label>
+      </div>
+      <input type="hidden" name="longitude" id="form_longitude" value="{{ form.longitude.value }}">
+      <input type="hidden" name="latitude" id="form_latitude" value="{{ form.latitude.value }}">
+      <div class="small-12 columns">
+        <input class="button2" type="submit" value="提 交">
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=11d18c6ac918c6880a21080e22eb8b49"></script>
+<script src="https://raw.githubusercontent.com/ChanMo/input_address/master/dist/input_address.js"></script>
+<script>
+  $(function(){
+    input_address.key = 'da2a4ea93146faa96462effb9728c113';
+    input_address.address_name = '#form_name';
+    input_address.address_address = '#form_address';
+    input_address.address_longitude = '#form_longitude';
+    input_address.address_latitude = '#form_latitude';
+  });
+</script>
+{% endblock %}

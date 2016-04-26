@@ -1,0 +1,19 @@
+{% extends "address/base.html" %}
+{% block main %}
+<div class="small-12 columns">
+  <div class="row">
+    <div class="small-4 columns text-center">姓名</div>
+    <div class="small-8 columns">{{ object.name }}</div>
+    <div class="small-4 columns text-center">手机</div>
+    <div class="small-8 columns">{{ object.mobile }}</div>
+    <div class="small-4 columns text-center">地点</div>
+    <div class="small-8 columns">{{ object.location }}</div>
+    <div class="small-4 columns text-center">详细地址</div>
+    <div class="small-8 columns">{{ object.address }}</div>
+  </div>
+</div>
+<div class="small-12 columns">
+  <a href="{% url 'address:create' %}">添加</a>
+  <a href="{% url 'address:update' object.id %}">编辑</a>
+</div>
+{% endblock %}

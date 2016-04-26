@@ -1,0 +1,20 @@
+{% extends "address/base.html" %}
+{% block main %}
+{% for item in object_list %}
+<a class="small-12 columns" href="{% url 'address:detail' item.id %}">
+  <div class="row">
+    <div class="small-6 columns">
+      <h4>{{ item.name }}</h4>
+    </div>
+    <div class="small-6 columns text-right">
+      <span>{{ item.mobile }}</span>
+    </div>
+  </div>
+  <p>{{ item.address }}</p>
+</a>
+{% endfor %}
+
+<div class="small-12 columns">
+  <a href="{% url 'address:create' %}">添加</a>
+</div>
+{% endblock %}
